@@ -1,7 +1,13 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 .body {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  background-color: #333;
   justify-content: center;
   align-items: center;
   font-family: "Raleway", "sans-serif";
@@ -11,9 +17,44 @@
   font-size: 2.25rem;
   line-height: 2.5rem;
   font-weight: bold;
-  color: rgb(23, 23, 23);
+  color: white;
   text-transform: uppercase;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+  margin-top: 0.75rem;
+}
+
+.attempt-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.attempt-container h2 {
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.45rem;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.attempts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.attempts .circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100%;
+  background-color: rgb(93, 205, 104);
+}
+
+.circle-failed {
+  background-color: #bbb !important;
 }
 
 .grid {
@@ -27,6 +68,7 @@
 }
 
 .grid-card {
+  box-sizing: border-box;
   width: 8rem;
   height: 11rem;
   /* background-color: rgb(191 219 254); */
@@ -68,4 +110,28 @@
 
 .rotate {
   transform: rotateY(180deg);
+}
+
+.matched {
+  pointer-events: none;
+  border: 0.25rem solid rgb(86, 232, 86);
+}
+
+.delayed-rotate {
+  transition-delay: 200ms;
+}
+
+.active {
+  pointer-events: none;
+  outline: 0.25rem solid black;
+  animation: active-glow 0.3s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes active-glow {
+  0% {
+    outline: 0.25rem solid rgb(198, 198, 198);
+  }
+  100% {
+    outline: 0.25rem solid rgb(123, 123, 123);
+  }
 }
