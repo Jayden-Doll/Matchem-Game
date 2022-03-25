@@ -1,44 +1,44 @@
-const gridCard = document.querySelectorAll(".card-inner");
+const cardGrid = document.querySelectorAll(".card-inner");
 const attempts = document.querySelectorAll(".circle");
 
-gridCard.forEach((card) => {
-  function checkCard() {
-    cardArray.push(card.id, card);
-    console.log(cardArray);
-  }
+let cardID = [];
+let selectedCards = [];
 
-  function matchCards(cardArray) {
-    if (cardArray[0] === cardArray[2]) {
-      console.log("It's a match!");
-      cardArray[1].classList.add("matched");
-      cardArray[3].classList.add("matched");
-      cardArray[1].classList.remove("active");
-      cardArray[3].classList.remove("active");
-      cardArray.length = 0;
-    } else {
-      console.log("nope, not a match", cardArray[0], cardArray[2]);
-      cardArray[1].classList.remove("active");
-      cardArray[3].classList.remove("active");
-      console.log(cardArray);
-      setTimeout(() => {
-        console.log(cardArray);
-        cardArray[1].classList.toggle("rotate");
-        cardArray[3].classList.toggle("rotate");
-        cardArray.length = 0;
-      }, 1000);
-    }
-  }
+function selectCard(card) {
+  cardID.push(card.id);
+  selectedCards.push(card);
 
-  cardArray = [];
+  card.classList.add("active");
+  card.classList.add("rotate");
+}
 
+cardGrid.forEach((card) => {
   card.addEventListener("click", () => {
-    card.classList.toggle("rotate");
-    card.classList.add("active");
+    selectCard(card);
 
-    checkCard();
+    if (cardID.length === 2) {
+      if (cardID[0] === cardID[1]) {
+        for (const cards of selectedCards) {
+          cards.classList.add("matched");
+          cards.classList.remove("active");
 
-    if (cardArray.length === 4) {
-      matchCards(cardArray);
+          cardID = [];
+          selectedCards = [];
+        }
+      }
+      {
+        for (const cards of selectedCards) {
+          cards.classList.remove("active");
+          cards.classList.add("disabled");
+          console.trace(cards);
+          setTimeout(() => {
+            cards.classList.remove("rotate");
+            cards.classList.remove("disabled");
+          }, 1000);
+          cardID = [];
+          selectedCards = [];
+        }
+      }
     }
   });
 });

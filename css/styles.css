@@ -121,6 +121,10 @@
   transition-delay: 200ms;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 .active {
   pointer-events: none;
   outline: 0.25rem solid black;
