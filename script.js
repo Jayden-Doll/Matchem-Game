@@ -26,7 +26,6 @@ function shuffleArray(array) {
 }
 
 shuffleArray(numArray);
-console.log(numArray);
 
 function createCard(cardCount) {
   for (let i = 0; i < cardCount; i++) {
@@ -34,13 +33,19 @@ function createCard(cardCount) {
     const innerCard = document.createElement("div");
     const cardFront = document.createElement("div");
     const cardBack = document.createElement("div");
+    const cardImage = document.createElement("img");
 
     gridContainer.appendChild(cardBody).classList.add("grid-card");
     cardBody.appendChild(innerCard).classList.add("card-inner");
     innerCard.appendChild(cardFront).classList.add("card-front");
     innerCard.appendChild(cardBack).classList.add("card-back");
+    cardBack.appendChild(cardImage);
 
-    innerCard.id = numArray.pop();
+    const randNum = numArray.pop();
+
+    innerCard.id = randNum;
+    cardImage.src = `./imgs/${randNum}.png`;
+
     console.log(innerCard.id);
   }
 }
