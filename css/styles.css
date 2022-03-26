@@ -29,17 +29,18 @@
   font-weight: bold;
   color: white;
   text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .attempt-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  margin-bottom: 0.5rem;
 }
 
-.attempt-container h2 {
+.attempt-container h2,
+span {
   text-transform: uppercase;
   font-weight: 600;
   margin-bottom: 0.45rem;
@@ -47,23 +48,10 @@
   color: white;
 }
 
-.attempts {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.attempts .circle {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 100%;
-  background-color: rgb(93, 205, 104);
-}
-
-.failed {
-  background-color: #bbb !important;
+.attempt-container span {
+  color: rgb(153, 255, 162);
+  font-size: 1.5rem;
+  padding-right: 0.25rem;
 }
 
 .grid {
@@ -81,7 +69,6 @@
   box-sizing: border-box;
   width: 8rem;
   height: 11rem;
-  /* background-color: rgb(191 219 254); */
   background-color: transparent;
   display: flex;
   justify-content: center;
@@ -169,15 +156,9 @@
     margin-bottom: 0.5rem;
   }
 
-  .attempt-container h2 {
+  .attempt-container h2,
+  span {
     margin-bottom: 0.75rem;
     font-size: 0.75rem;
-  }
-
-  .attempts .circle {
-    width: 1rem;
-    height: 1rem;
-    border-radius: 100%;
-    background-color: rgb(93, 205, 104);
   }
 }

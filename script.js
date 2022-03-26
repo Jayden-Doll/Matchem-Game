@@ -1,4 +1,7 @@
 const gridContainer = document.querySelector(".grid-container");
+const attemptCount = document.querySelector("#attempts");
+const subtitle = document.querySelector("#subtitle");
+attemptCount.innerText = 5;
 
 //Amount of cards to be created
 let cardCount = 12;
@@ -45,8 +48,6 @@ function createCard(cardCount) {
 
     innerCard.id = randNum;
     cardImage.src = `./imgs/${randNum}.png`;
-
-    console.log(innerCard.id);
   }
 }
 
@@ -81,7 +82,8 @@ cardGrid.forEach((card) => {
         matches++;
         console.log(`${matches} cards matched!`);
         if (matches === cardCount / 2) {
-          console.log("You've successfully matched all cards! You win!");
+          subtitle.innerText = "You win!";
+          subtitle.style.color = "rgb(153, 255, 162)";
         }
 
         for (const cards of selectedCards) {
@@ -94,11 +96,11 @@ cardGrid.forEach((card) => {
         }
       } else {
         attempts--;
-
-        console.log("-1 attempt", `${attempts} attempts left!`);
+        attemptCount.innerText = `${attempts}`;
 
         if (attempts === 0) {
-          console.log("You lose!");
+          subtitle.innerText = "You lose!";
+          subtitle.style.color = "rgb(255, 109, 109)";
 
           //Show every card and disable them
           cardGrid.forEach((poop) => {
