@@ -1,6 +1,19 @@
 const gridContainer = document.querySelector(".grid-container");
 const attemptCount = document.querySelector("#attempts");
 const subtitle = document.querySelector("#subtitle");
+const startScreen = document.querySelector("#menu");
+const startButton = document.querySelector("#btn-start");
+const popup = document.querySelector("#popup-container");
+const overlay = document.querySelector("#overlay");
+const message = document.querySelector("#popup-message");
+const restartButton = document.querySelector("#btn-restart");
+const toMenuButton = document.querySelector("#btn-to-menu");
+
+startButton.addEventListener("click", () => {
+  startScreen.classList.remove("menu-show");
+  startScreen.classList.add("menu-hide");
+});
+
 attemptCount.innerText = 5;
 
 //Amount of cards to be created
@@ -82,8 +95,10 @@ cardGrid.forEach((card) => {
         matches++;
         console.log(`${matches} cards matched!`);
         if (matches === cardCount / 2) {
-          subtitle.innerText = "You win!";
-          subtitle.style.color = "rgb(153, 255, 162)";
+          message.innerText = "You Win!";
+          message.style.color = "rgb(52, 193, 63)";
+          popup.classList.remove("popup-hidden");
+          overlay.classList.remove("overlay-hidden");
         }
 
         for (const cards of selectedCards) {
@@ -99,8 +114,10 @@ cardGrid.forEach((card) => {
         attemptCount.innerText = `${attempts}`;
 
         if (attempts === 0) {
-          subtitle.innerText = "You lose!";
-          subtitle.style.color = "rgb(255, 109, 109)";
+          message.innerText = "You Lose.";
+          message.style.color = "rgb(193, 52, 52)";
+          popup.classList.remove("popup-hidden");
+          overlay.classList.remove("overlay-hidden");
 
           //Show every card and disable them
           cardGrid.forEach((poop) => {
@@ -128,4 +145,40 @@ cardGrid.forEach((card) => {
       }
     }
   });
+});
+
+function resetGame() {
+  popup.classList.add("popup-hidden");
+  overlay.classList.add("overlay-hidden");
+
+  setTimeout(() => {
+    attemptCount.innerText = 5;
+
+    numArray = [];
+    cardID = [];
+    selectedCards = [];
+
+    attempts = 5;
+    matches = 0;
+
+    cardGrid.forEach((card) => {
+      card.classList.remove(
+        "rotate",
+        "active",
+        "matched",
+        "disabled",
+        "active"
+      );
+    });
+  }, 400);
+}
+
+restartButton.addEventListener("click", () => {
+  resetGame();
+});
+
+toMenuButton.addEventListener("click", () => {
+  resetGame();
+  startScreen.classList.remove("menu-hide");
+  startScreen.classList.add("menu-show");
 });

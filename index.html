@@ -17,13 +17,27 @@
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body class="body">
+    <div id="overlay" class="overlay overlay-hidden"></div>
+    <div id="menu" class="menu-container">
+      <h1 class="title-menu">Matching Game</h1>
+      <a id="btn-start" class="btn-start">Start Game</a>
+    </div>
     <div class="container">
       <h1 class="title">matching game</h1>
       <div class="attempt-container">
-        <h2 id="subtitle"><span id="attempts">#</span> Attempts left</h2>
+        <h2 id="subtitle"><span id="attempts">#</span>Attempts left</h2>
       </div>
     </div>
-    <div class="grid grid-container"></div>
+    <div class="grid grid-container">
+      <div id="popup-container" class="popup-container popup-hidden">
+        <p id="popup-message"></p>
+        <h1>Play again?</h1>
+        <div class="btn-container">
+          <a id="btn-restart" class="btn btn-restart">New Game</a>
+          <a id="btn-to-menu" class="btn btn-to-menu">Back to Menu</a>
+        </div>
+      </div>
+    </div>
 
     <script src="./script.js"></script>
   </body>
