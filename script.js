@@ -43,8 +43,6 @@ function shuffleArray(array) {
 
 shuffleArray(numArray);
 
-console.log("Initial Num Array", numArray);
-
 function createCard(cardCount) {
   for (let i = 0; i < cardCount; i++) {
     const cardBody = document.createElement("div");
@@ -68,8 +66,6 @@ function createCard(cardCount) {
 
 createCard(cardCount);
 
-console.log("Initial Num Array", numArray);
-
 const cardGrid = document.querySelectorAll(".card-inner");
 
 //Card ID and selected cards arrays
@@ -86,19 +82,23 @@ function removeCards() {
 }
 
 function resetGame() {
-  const newCardGrid = document.querySelectorAll(".card-inner");
-  if (newCardGrid) {
-    newCardGrid.forEach((card) => {
-      card.classList.remove("rotate", "active", "matched", "disabled");
-    });
-  }
-
   popup.classList.add("popup-hidden");
   overlay.classList.add("overlay-hidden");
 
-  cardGrid.forEach((card) => {
-    card.classList.remove("rotate", "active", "matched", "disabled");
-  });
+  setTimeout(() => {
+    const newCardGrid = document.querySelectorAll(".card-inner");
+    if (newCardGrid) {
+      newCardGrid.forEach((card) => {
+        card.classList.remove("rotate", "active", "matched", "disabled");
+        card.classList.add("noclick");
+      });
+    }
+
+    cardGrid.forEach((card) => {
+      card.classList.remove("rotate", "active", "matched", "disabled");
+      card.classList.add("noclick");
+    });
+  }, 400);
 
   setTimeout(() => {
     attemptCount.innerText = 5;
@@ -109,19 +109,13 @@ function resetGame() {
 
     generateNumArray(cardCount);
     shuffleArray(numArray);
-    console.log(
-      "Try again num array",
-      numArray,
-      cardCount,
-      cardID,
-      attempts,
-      matches
-    );
 
     createCard(cardCount);
+
     const newCardGrid = document.querySelectorAll(".card-inner");
+
     runGameLogic(newCardGrid);
-  }, 400);
+  }, 700);
 }
 
 restartButton.addEventListener("click", () => {
@@ -147,7 +141,6 @@ function runGameLogic(grid) {
 
   grid.forEach((card) => {
     card.addEventListener("click", () => {
-      console.log(true);
       selectCard(card);
 
       //If 2 cards are selected
@@ -155,7 +148,7 @@ function runGameLogic(grid) {
         //If both card's ids match
         if (cardID[0] === cardID[1]) {
           matches++;
-          console.log(`${matches} cards matched!`);
+
           if (matches === cardCount / 2) {
             message.innerText = "You Win!";
             message.style.color = "rgb(52, 193, 63)";

@@ -294,6 +294,10 @@ span {
   border-radius: 14.5px;
 }
 
+.noclick {
+  pointer-events: none;
+}
+
 .active {
   pointer-events: none;
   outline: 0.25rem solid black;
