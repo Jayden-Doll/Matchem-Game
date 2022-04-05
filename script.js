@@ -8,7 +8,7 @@ const overlay = document.querySelector("#overlay");
 const message = document.querySelector("#popup-message");
 const restartButton = document.querySelector("#btn-restart");
 const toMenuButton = document.querySelector("#btn-to-menu");
-const cardAmountButtons = document.querySelectorAll(".btn-option");
+const buttonOptions = document.querySelectorAll(".btn-option");
 const buttonOption12 = document.querySelector("#btn-12");
 const buttonOption24 = document.querySelector("#btn-24");
 const buttonOption36 = document.querySelector("#btn-36");
@@ -232,6 +232,10 @@ buttonOption12.addEventListener("click", () => {
   if (gridContainer) {
     gridContainer.remove();
   }
+  buttonOptions.forEach((button) => {
+    button.classList.remove("option-selected");
+  });
+  buttonOption12.classList.add("option-selected");
   let cardCount = smBoard;
   runGame(cardCount);
 });
@@ -240,6 +244,10 @@ buttonOption24.addEventListener("click", () => {
   if (gridContainer) {
     gridContainer.remove();
   }
+  buttonOptions.forEach((button) => {
+    button.classList.remove("option-selected");
+  });
+  buttonOption24.classList.add("option-selected");
   let cardCount = mdBoard;
   runGame(cardCount);
 });
@@ -248,6 +256,10 @@ buttonOption36.addEventListener("click", () => {
   if (gridContainer) {
     gridContainer.remove();
   }
+  buttonOptions.forEach((button) => {
+    button.classList.remove("option-selected");
+  });
+  buttonOption36.classList.add("option-selected");
   let cardCount = lgBoard;
   runGame(cardCount);
 });

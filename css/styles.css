@@ -111,13 +111,21 @@ body {
 }
 
 .button-options .btn-option {
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  background-color: rgb(222, 222, 222);
+  border: 3px solid rgb(31, 31, 31);
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+  transition: background-color 0.15s ease;
 }
 
 .button-options .btn-option:hover {
-  background-color: white;
+  color: white;
+  background-color: rgb(31, 31, 31);
+  cursor: pointer;
+}
+
+.option-selected {
+  background-color: rgb(31, 31, 31);
+  color: white;
 }
 
 .popup-container {
@@ -379,5 +387,10 @@ span {
   span {
     margin-bottom: 0.75rem;
     font-size: 0.75rem;
+  }
+
+  #btn-24,
+  #btn-36 {
+    display: none;
   }
 }
