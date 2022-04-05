@@ -43,6 +43,8 @@ function shuffleArray(array) {
 
 shuffleArray(numArray);
 
+console.log("Initial Num Array", numArray);
+
 function createCard(cardCount) {
   for (let i = 0; i < cardCount; i++) {
     const cardBody = document.createElement("div");
@@ -64,7 +66,9 @@ function createCard(cardCount) {
   }
 }
 
-createCard(cardCount, numArray);
+createCard(cardCount);
+
+console.log("Initial Num Array", numArray);
 
 const cardGrid = document.querySelectorAll(".card-inner");
 
@@ -75,101 +79,48 @@ let selectedCards = [];
 let attempts = 5;
 let matches = 0;
 
-//Pushes selected card object and it's id into the arrays
-function selectCard(card) {
-  cardID.push(card.id);
-  selectedCards.push(card);
-
-  card.classList.add("active");
-  card.classList.add("rotate");
+function removeCards() {
+  while (gridContainer.firstChild) {
+    gridContainer.removeChild(gridContainer.firstChild);
+  }
 }
 
-cardGrid.forEach((card) => {
-  card.addEventListener("click", () => {
-    selectCard(card);
-
-    //If 2 cards are selected
-    if (cardID.length === 2) {
-      //If both card's ids match
-      if (cardID[0] === cardID[1]) {
-        matches++;
-        console.log(`${matches} cards matched!`);
-        if (matches === cardCount / 2) {
-          message.innerText = "You Win!";
-          message.style.color = "rgb(52, 193, 63)";
-          popup.classList.remove("popup-hidden");
-          overlay.classList.remove("overlay-hidden");
-        }
-
-        for (const cards of selectedCards) {
-          cards.classList.add("matched");
-          cards.classList.remove("active");
-
-          //Empty both arrays
-          cardID = [];
-          selectedCards = [];
-        }
-      } else {
-        attempts--;
-        attemptCount.innerText = `${attempts}`;
-
-        if (attempts === 0) {
-          message.innerText = "You Lose.";
-          message.style.color = "rgb(193, 52, 52)";
-          popup.classList.remove("popup-hidden");
-          overlay.classList.remove("overlay-hidden");
-
-          //Show every card and disable them
-          cardGrid.forEach((poop) => {
-            poop.classList.add("disabled", "rotate");
-            setTimeout(() => {
-              poop.classList.add("disabled", "rotate");
-            }, 1001);
-          });
-        }
-
-        //Add disabled class, and rotate cards back after a second
-        for (const cards of selectedCards) {
-          cards.classList.remove("active");
-          cards.classList.add("disabled");
-
-          setTimeout(() => {
-            cards.classList.remove("rotate");
-            cards.classList.remove("disabled");
-          }, 1000);
-
-          //Empty both arrays
-          cardID = [];
-          selectedCards = [];
-        }
-      }
-    }
-  });
-});
-
 function resetGame() {
+  const newCardGrid = document.querySelectorAll(".card-inner");
+  if (newCardGrid) {
+    newCardGrid.forEach((card) => {
+      card.classList.remove("rotate", "active", "matched", "disabled");
+    });
+  }
+
   popup.classList.add("popup-hidden");
   overlay.classList.add("overlay-hidden");
 
+  cardGrid.forEach((card) => {
+    card.classList.remove("rotate", "active", "matched", "disabled");
+  });
+
   setTimeout(() => {
     attemptCount.innerText = 5;
-
-    numArray = [];
-    cardID = [];
-    selectedCards = [];
-
     attempts = 5;
     matches = 0;
 
-    cardGrid.forEach((card) => {
-      card.classList.remove(
-        "rotate",
-        "active",
-        "matched",
-        "disabled",
-        "active"
-      );
-    });
+    removeCards();
+
+    generateNumArray(cardCount);
+    shuffleArray(numArray);
+    console.log(
+      "Try again num array",
+      numArray,
+      cardCount,
+      cardID,
+      attempts,
+      matches
+    );
+
+    createCard(cardCount);
+    const newCardGrid = document.querySelectorAll(".card-inner");
+    runGameLogic(newCardGrid);
   }, 400);
 }
 
@@ -182,3 +133,81 @@ toMenuButton.addEventListener("click", () => {
   startScreen.classList.remove("menu-hide");
   startScreen.classList.add("menu-show");
 });
+
+//Pushes selected card object and it's id into the arrays
+
+function runGameLogic(grid) {
+  function selectCard(card) {
+    cardID.push(card.id);
+    selectedCards.push(card);
+
+    card.classList.add("active");
+    card.classList.add("rotate");
+  }
+
+  grid.forEach((card) => {
+    card.addEventListener("click", () => {
+      console.log(true);
+      selectCard(card);
+
+      //If 2 cards are selected
+      if (cardID.length === 2) {
+        //If both card's ids match
+        if (cardID[0] === cardID[1]) {
+          matches++;
+          console.log(`${matches} cards matched!`);
+          if (matches === cardCount / 2) {
+            message.innerText = "You Win!";
+            message.style.color = "rgb(52, 193, 63)";
+            popup.classList.remove("popup-hidden");
+            overlay.classList.remove("overlay-hidden");
+          }
+
+          for (const cards of selectedCards) {
+            cards.classList.add("matched");
+            cards.classList.remove("active");
+
+            //Empty both arrays
+            cardID = [];
+            selectedCards = [];
+          }
+        } else {
+          attempts--;
+          attemptCount.innerText = `${attempts}`;
+
+          if (attempts === 0) {
+            message.innerText = "You Lose.";
+            message.style.color = "rgb(193, 52, 52)";
+            popup.classList.remove("popup-hidden");
+            overlay.classList.remove("overlay-hidden");
+
+            //Show every card and disable them
+            grid.forEach((poop) => {
+              poop.classList.add("disabled", "rotate");
+              setTimeout(() => {
+                poop.classList.add("disabled", "rotate");
+              }, 1001);
+            });
+          }
+
+          //Add disabled class, and rotate cards back after a second
+          for (const cards of selectedCards) {
+            cards.classList.remove("active");
+            cards.classList.add("disabled");
+
+            setTimeout(() => {
+              cards.classList.remove("rotate");
+              cards.classList.remove("disabled");
+            }, 1000);
+
+            //Empty both arrays
+            cardID = [];
+            selectedCards = [];
+          }
+        }
+      }
+    });
+  });
+}
+
+runGameLogic(cardGrid);
