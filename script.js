@@ -87,8 +87,8 @@ function runGame(cardCount) {
 
   let attempts;
   cardCount === smBoard ? (attempts = 5) : false;
-  cardCount === mdBoard ? (attempts = 12) : false;
-  cardCount === lgBoard ? (attempts = 20) : false;
+  cardCount === mdBoard ? (attempts = 16) : false;
+  cardCount === lgBoard ? (attempts = 24) : false;
   attemptCount.innerText = attempts;
   let matches = 0;
 
@@ -120,8 +120,8 @@ function runGame(cardCount) {
     setTimeout(() => {
       document.querySelector(".grid-container").remove();
       cardCount === smBoard ? (attempts = 5) : false;
-      cardCount === mdBoard ? (attempts = 12) : false;
-      cardCount === lgBoard ? (attempts = 20) : false;
+      cardCount === mdBoard ? (attempts = 16) : false;
+      cardCount === lgBoard ? (attempts = 24) : false;
       attemptCount.innerText = attempts;
       matches = 0;
 
