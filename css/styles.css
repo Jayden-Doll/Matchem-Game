@@ -167,40 +167,78 @@ body {
   gap: 1rem;
 }
 
-.btn-container .btn {
+.btn {
   background-color: white;
   font-weight: 500;
   cursor: pointer;
 }
 
-.btn-container .btn-restart {
+.btn-restart {
   border: 3px solid rgb(31, 31, 31);
   border-radius: 5px;
   padding: 0.5rem 0.75rem;
   transition: background-color 0.15s ease;
 }
 
-.btn-container .btn-restart:hover {
+.btn-restart:hover {
   color: white;
   background-color: rgb(31, 31, 31);
 }
 
-.btn-container .btn-to-menu {
+.btn-to-menu {
   font-size: 1.1rem;
   border-bottom: 2px solid transparent;
   transition: border-bottom 0.15s ease;
 }
 
-.btn-container .btn-to-menu:hover {
+.btn-to-menu:hover {
   border-bottom: 2px solid black;
 }
 
-.container {
+.btn-container {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.in-game.btn {
+  background-color: white;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+.in-game.btn-to-menu {
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+}
+
+.in-game.btn-to-menu:hover {
+  border: none;
+}
+
+.in-game.btn-container {
+  margin: 0;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.container {
+  height: auto;
+  width: auto;
+  margin-bottom: 0.5%;
 }
 
 .title-menu {
@@ -223,16 +261,8 @@ body {
   user-select: none;
 }
 
-.attempt-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  user-select: none;
-}
-
-.attempt-container h2,
-span {
+#subtitle,
+#attempts {
   text-transform: uppercase;
   font-weight: 600;
   margin-bottom: 0.45rem;
@@ -240,7 +270,7 @@ span {
   color: white;
 }
 
-.attempt-container span {
+#attempts {
   color: rgb(153, 255, 162);
   font-size: 1.5rem;
   padding-right: 0.25rem;

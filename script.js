@@ -6,8 +6,8 @@ const startButton = document.querySelector("#btn-start");
 const popup = document.querySelector("#popup-container");
 const overlay = document.querySelector("#overlay");
 const message = document.querySelector("#popup-message");
-const restartButton = document.querySelector("#btn-restart");
-const toMenuButton = document.querySelector("#btn-to-menu");
+const restartButton = document.querySelectorAll("#btn-restart");
+const toMenuButton = document.querySelectorAll("#btn-to-menu");
 const buttonOptions = document.querySelectorAll(".btn-option");
 const buttonOption12 = document.querySelector("#btn-12");
 const buttonOption24 = document.querySelector("#btn-24");
@@ -20,6 +20,7 @@ let lgBoard = 36;
 
 function runGame(cardCount) {
   startButton.addEventListener("click", () => {
+    resetGame();
     startScreen.classList.remove("menu-show");
     startScreen.classList.add("menu-hide");
   });
@@ -88,7 +89,7 @@ function runGame(cardCount) {
   let attempts;
   cardCount === smBoard ? (attempts = 5) : false;
   cardCount === mdBoard ? (attempts = 16) : false;
-  cardCount === lgBoard ? (attempts = 24) : false;
+  cardCount === lgBoard ? (attempts = 30) : false;
   attemptCount.innerText = attempts;
   let matches = 0;
 
@@ -101,11 +102,14 @@ function runGame(cardCount) {
   function resetGame() {
     popup.classList.add("popup-hidden");
     overlay.classList.add("overlay-hidden");
+    matches = 0;
 
     setTimeout(() => {
       const newCardGrid = document.querySelectorAll(".card-inner");
       if (newCardGrid) {
+        selectedCards = [];
         newCardGrid.forEach((card) => {
+          selectedCards = [];
           card.classList.remove("rotate", "active", "matched", "disabled");
           card.classList.add("noclick");
         });
@@ -121,9 +125,8 @@ function runGame(cardCount) {
       document.querySelector(".grid-container").remove();
       cardCount === smBoard ? (attempts = 5) : false;
       cardCount === mdBoard ? (attempts = 16) : false;
-      cardCount === lgBoard ? (attempts = 24) : false;
+      cardCount === lgBoard ? (attempts = 30) : false;
       attemptCount.innerText = attempts;
-      matches = 0;
 
       removeCards();
 
@@ -138,14 +141,21 @@ function runGame(cardCount) {
     }, 700);
   }
 
-  restartButton.addEventListener("click", () => {
-    resetGame();
+  restartButton.forEach((button) => {
+    button.addEventListener("click", () => {
+      resetGame();
+    });
   });
 
-  toMenuButton.addEventListener("click", () => {
-    resetGame();
-    startScreen.classList.remove("menu-hide");
-    startScreen.classList.add("menu-show");
+  toMenuButton.forEach((button) => {
+    button.addEventListener("click", () => {
+      resetGame();
+      startScreen.classList.remove("menu-hide");
+      startScreen.classList.add("menu-show");
+      buttonOptions.forEach((option) => {
+        option.classList.remove("option-selected");
+      });
+    });
   });
 
   //Pushes selected card object and it's id into the arrays
@@ -154,6 +164,7 @@ function runGame(cardCount) {
     function selectCard(card) {
       cardID.push(card.id);
       selectedCards.push(card);
+      console.log(selectedCards);
 
       card.classList.add("active");
       card.classList.add("rotate");
@@ -165,6 +176,7 @@ function runGame(cardCount) {
 
         //If 2 cards are selected
         if (cardID.length === 2) {
+          console.log(selectedCards);
           //If both card's ids match
           if (cardID[0] === cardID[1]) {
             matches++;
