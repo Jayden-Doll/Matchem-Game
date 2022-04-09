@@ -21,19 +21,27 @@
     <div id="menu" class="menu-container">
       <h1 class="title-menu">Matching Game</h1>
       <div class="card-amount-container">
-        <h1 class="title-secondary">Select Board Size</h1>
+        <h1 class="title-option">Select Board Size</h1>
         <div class="button-options">
-          <a id="btn-12" class="btn-option">small (12 cards)</a>
-          <a id="btn-24" class="btn-option">medium (24 cards)</a>
-          <a id="btn-36" class="btn-option">large (36 cards)</a>
+          <button tabindex="0" id="btn-12" class="btn-option">
+            small (12 cards)
+          </button>
+          <button tabindex="0" id="btn-24" class="btn-option">
+            medium (24 cards)
+          </button>
+          <button tabindex="0" id="btn-36" class="btn-option">
+            large (36 cards)
+          </button>
         </div>
       </div>
-      <a id="btn-start" class="btn-start">Start Game</a>
+      <button tabindex="0" id="btn-start" class="btn-start">Start Game</button>
     </div>
     <div class="container">
       <div class="btn-container in-game">
         <h2 id="subtitle"><span id="attempts">#</span>Attempts left</h2>
-        <a id="btn-to-menu" class="btn btn-to-menu in-game">Back to Menu</a>
+        <button id="btn-to-menu" class="btn btn-to-menu in-game">
+          Back to Menu
+        </button>
       </div>
     </div>
     <div id="popup-container" class="popup-container popup-hidden">
