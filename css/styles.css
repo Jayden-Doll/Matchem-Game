@@ -111,6 +111,7 @@ body {
 }
 
 .button-options .btn-option {
+  text-transform: uppercase;
   border: 3px solid rgb(31, 31, 31);
   border-radius: 5px;
   padding: 0.5rem 0.75rem;
@@ -268,6 +269,7 @@ body {
   margin-bottom: 0.45rem;
   font-size: 1.25rem;
   color: white;
+  user-select: none;
 }
 
 #attempts {
