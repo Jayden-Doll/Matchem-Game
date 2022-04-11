@@ -7,7 +7,7 @@ const popup = document.querySelector("#popup-container");
 const overlay = document.querySelector("#overlay");
 const message = document.querySelector("#popup-message");
 const restartButton = document.querySelector("#btn-restart");
-const toMenuButton = document.querySelectorAll("#btn-to-menu");
+const toMenuButton = document.querySelectorAll(".btn-to-menu");
 const buttonOptions = document.querySelectorAll(".btn-option");
 const boardOptionSmall = document.querySelector("#btn-12");
 const boardOptionMedium = document.querySelector("#btn-24");
@@ -159,7 +159,7 @@ function runGameLogic(grid, boardSize) {
 
           if (matches === boardSize / 2) {
             message.innerText = "You Win!";
-            message.style.color = "rgb(52, 193, 63)";
+            message.style.color = "rgb(86, 232, 86)";
             showPopup();
           }
 
@@ -177,7 +177,7 @@ function runGameLogic(grid, boardSize) {
 
           if (attempts === 0) {
             message.innerText = "You Lose.";
-            message.style.color = "rgb(193, 52, 52)";
+            message.style.color = "var(--secondary-color)";
             showPopup();
 
             //Show every card and disable them
