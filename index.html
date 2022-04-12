@@ -23,9 +23,22 @@
   <body class="body">
     <div id="overlay" class="overlay overlay-hidden"></div>
     <div id="menu" class="menu-container">
-      <h1 class="title-menu">Matching Game</h1>
-      <div class="card-amount-container">
-        <h1 class="title-option">Select Board Size</h1>
+      <h1 class="title-menu">Unmatched!</h1>
+
+      <div class="options-container">
+        <h2 class="title-option theme">Select Theme</h2>
+        <div class="button-options theme-container">
+          <button id="pawpatroltheme" class="btn-theme theme-inactive">
+            <img src="./options-images/pawpatrollogo.png" alt="" />
+          </button>
+          <button id="minecrafttheme" class="btn-theme theme-inactive">
+            <img src="./options-images/minecraft.png" alt="" />
+          </button>
+          <button id="spongebobtheme" class="btn-theme theme-inactive">
+            <img src="./options-images/spongebob.png" alt="" />
+          </button>
+        </div>
+        <h2 class="title-option">Select Board Size</h2>
         <div class="button-options">
           <button tabindex="0" id="btn-12" class="btn-option">
             small (12 cards)
@@ -38,6 +51,7 @@
           </button>
         </div>
       </div>
+
       <button tabindex="0" id="btn-start" class="btn-start">Start Game</button>
     </div>
     <div class="container">
@@ -51,8 +65,8 @@
     <div id="popup-container" class="popup-container popup-hidden">
       <p id="popup-message"></p>
       <h1>Play again?</h1>
-      <div class="btn-container">
-        <button id="btn-restart" class="btn btn-restart">New Game</button>
+      <div class="btn-container popup">
+        <button id="btn-restart" class="btn btn-restart" poop>New Game</button>
         <button id="btn-to-menu-popup" class="btn btn-to-menu">
           Back to Menu
         </button>

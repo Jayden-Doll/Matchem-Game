@@ -9,9 +9,15 @@ const message = document.querySelector("#popup-message");
 const restartButton = document.querySelector("#btn-restart");
 const toMenuButton = document.querySelectorAll(".btn-to-menu");
 const buttonOptions = document.querySelectorAll(".btn-option");
+const boardSizeOptions = document.querySelectorAll(".btn-option");
 const boardOptionSmall = document.querySelector("#btn-12");
 const boardOptionMedium = document.querySelector("#btn-24");
 const boardOptionLarge = document.querySelector("#btn-36");
+const themeOptions = document.querySelectorAll(".btn-theme");
+const pawPatrolThemeButton = document.querySelector("#pawpatroltheme");
+const minecraftThemeButton = document.querySelector("#minecrafttheme");
+const spongebobThemeButton = document.querySelector("#spongebobtheme");
+
 let smBoard = 12;
 let mdBoard = 24;
 let lgBoard = 36;
@@ -63,7 +69,30 @@ function createGrid(boardSize) {
     const randNum = numArray.pop();
 
     innerCard.id = randNum;
-    cardImage.src = `./imgs/${randNum}.png`;
+
+    if (pawPatrolThemeButton.classList.contains("theme-active")) {
+      cardImage.src = `./pawpatrol-imgs/${randNum}.png`;
+      cardFront.style.backgroundImage =
+        "url('../card-backs/pawpatrollogo.png'), radial-gradient(circle, rgba(221,221,221,1) 0%, rgba(59,59,59,1) 100%)";
+      cardFront.style.backgroundSize = "140%";
+      document.body.style.backgroundImage = "url('../bg-imgs/pawpatrolbg.png')";
+    }
+
+    if (minecraftThemeButton.classList.contains("theme-active")) {
+      cardImage.src = `./minecraft-imgs/${randNum}.png`;
+      cardFront.style.backgroundImage =
+        "url('../card-backs/minecraft.png'), radial-gradient(circle, rgba(221,221,221,1) 0%, rgba(59,59,59,1) 100%)";
+      cardFront.style.backgroundSize = "90%, cover";
+      document.body.style.backgroundImage = "url('../bg-imgs/minecraftbg.png')";
+    }
+
+    if (spongebobThemeButton.classList.contains("theme-active")) {
+      cardImage.src = `./spongebob-imgs/${randNum}.png`;
+      cardFront.style.backgroundImage =
+        "url('../card-backs/spongebob.png'), radial-gradient(circle, rgba(221,221,221,1) 0%, rgba(59,59,59,1) 100%)";
+      cardFront.style.backgroundSize = "90%, cover";
+      document.body.style.backgroundImage = "url('../bg-imgs/spongebobbg.png')";
+    }
   }
 }
 
@@ -102,6 +131,18 @@ function backToMenu() {
   buttonOptions.forEach((option) => {
     option.classList.remove("option-selected");
   });
+
+  themeOptions.forEach((option) => {
+    option.classList.remove("theme-selected");
+    option.classList.replace("theme-active", "theme-inactive");
+  });
+
+  boardSizeOptions.forEach((option) => {
+    option.setAttribute("disabled", "");
+  });
+
+  startButton.setAttribute("disabled", "");
+
   setTimeout(() => {
     removeGrid();
     numArray = [];
@@ -128,6 +169,7 @@ function newGame(boardSize) {
     removeGrid();
     createGrid(boardSize);
     const activeGrid = document.querySelectorAll(".card-inner");
+    matches = 0;
     runGameLogic(activeGrid, boardSize);
   }, 700);
 }
@@ -176,7 +218,7 @@ function runGameLogic(grid, boardSize) {
           attemptCount.innerText = `${attempts}`;
 
           if (attempts === 0) {
-            message.innerText = "You Lose.";
+            message.innerText = "Game over";
             message.style.color = "var(--secondary-color)";
             showPopup();
 
@@ -209,6 +251,96 @@ function runGameLogic(grid, boardSize) {
   });
 }
 
+boardSizeOptions.forEach((option) => {
+  option.setAttribute("disabled", "");
+});
+
+startButton.setAttribute("disabled", "");
+
+pawPatrolThemeButton.addEventListener("click", () => {
+  const gridContainer = document.querySelector(".grid");
+  if (gridContainer) {
+    gridContainer.remove();
+  }
+
+  buttonOptions.forEach((option) => {
+    if (option.classList.contains("option-selected"))
+      option.classList.remove("option-selected");
+  });
+
+  !startButton.hasAttribute("disabled")
+    ? startButton.setAttribute("disabled", "")
+    : false;
+
+  themeOptions.forEach((option) => {
+    option.classList.remove("theme-selected");
+    option.classList.replace("theme-active", "theme-inactive");
+  });
+
+  pawPatrolThemeButton.classList.add("theme-selected");
+  pawPatrolThemeButton.classList.replace("theme-inactive", "theme-active");
+
+  boardSizeOptions.forEach((option) => {
+    option.removeAttribute("disabled", "");
+  });
+});
+
+minecraftThemeButton.addEventListener("click", () => {
+  const gridContainer = document.querySelector(".grid");
+  if (gridContainer) {
+    gridContainer.remove();
+  }
+
+  buttonOptions.forEach((option) => {
+    if (option.classList.contains("option-selected"))
+      option.classList.remove("option-selected");
+  });
+
+  !startButton.hasAttribute("disabled")
+    ? startButton.setAttribute("disabled", "")
+    : false;
+
+  themeOptions.forEach((option) => {
+    option.classList.remove("theme-selected");
+    option.classList.replace("theme-active", "theme-inactive");
+  });
+
+  minecraftThemeButton.classList.add("theme-selected");
+  minecraftThemeButton.classList.replace("theme-inactive", "theme-active");
+
+  boardSizeOptions.forEach((option) => {
+    option.removeAttribute("disabled", "");
+  });
+});
+
+spongebobThemeButton.addEventListener("click", () => {
+  const gridContainer = document.querySelector(".grid");
+  if (gridContainer) {
+    gridContainer.remove();
+  }
+
+  buttonOptions.forEach((option) => {
+    if (option.classList.contains("option-selected"))
+      option.classList.remove("option-selected");
+  });
+
+  !startButton.hasAttribute("disabled")
+    ? startButton.setAttribute("disabled", "")
+    : false;
+
+  themeOptions.forEach((option) => {
+    option.classList.remove("theme-selected");
+    option.classList.replace("theme-active", "theme-inactive");
+  });
+
+  spongebobThemeButton.classList.add("theme-selected");
+  spongebobThemeButton.classList.replace("theme-inactive", "theme-active");
+
+  boardSizeOptions.forEach((option) => {
+    option.removeAttribute("disabled", "");
+  });
+});
+
 boardOptionSmall.addEventListener("click", () => {
   const gridContainer = document.querySelector(".grid");
   if (gridContainer) {
@@ -225,16 +357,24 @@ boardOptionSmall.addEventListener("click", () => {
   createGrid(smBoard);
   const activeGrid = document.querySelectorAll(".card-inner");
   runGameLogic(activeGrid, smBoard);
+  console.log(matches);
 
   startButton.addEventListener("click", () => {
     const grid = document.querySelector(".grid");
-    if (grid) {
+    if (
+      (grid && pawPatrolThemeButton.classList.contains("theme-active")) ||
+      minecraftThemeButton.classList.contains("theme-active") ||
+      spongebobThemeButton.classList.contains("theme-active")
+    ) {
       hideMenu();
     }
   });
 
+  startButton.removeAttribute("disabled", "");
+
   restartButton.addEventListener("click", () => {
     newGame(smBoard);
+    matches = 0;
   });
 });
 
@@ -262,8 +402,11 @@ boardOptionMedium.addEventListener("click", () => {
     }
   });
 
+  startButton.removeAttribute("disabled", "");
+
   restartButton.addEventListener("click", () => {
     newGame(mdBoard);
+    matches = 0;
   });
 });
 
@@ -291,8 +434,11 @@ boardOptionLarge.addEventListener("click", () => {
     }
   });
 
+  startButton.removeAttribute("disabled", "");
+
   restartButton.addEventListener("click", () => {
     newGame(lgBoard);
+    matches = 0;
   });
 });
 
