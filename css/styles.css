@@ -645,7 +645,7 @@ body {
   }
 
   .btn-to-menu {
-    font-size: 1rem;
+    font-size: 1.1rem;
     border-bottom: 2px solid transparent;
   }
 
@@ -699,7 +699,7 @@ body {
     gap: 1.25rem;
     background-color: rgba(0, 0, 0, 0.8);
     box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.8);
-    padding: 1rem;
+    padding: 0rem;
     border-radius: 5px;
   }
 
@@ -743,5 +743,33 @@ body {
 
   .button-options {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 385px) {
+  #subtitle,
+  #attempts {
+    font-size: 1rem;
+  }
+
+  #attempts {
+    padding-right: 0.7rem;
+    text-align: center;
+  }
+
+  #subtitle {
+    margin-bottom: 0;
+  }
+
+  .in-game.btn {
+    padding: 0rem 0rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .in-game.btn-to-menu {
+    border: 0.3rem solid transparent;
+    border-radius: 5px;
+    padding: 0.05rem 1rem;
   }
 }
