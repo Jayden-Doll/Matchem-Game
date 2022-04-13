@@ -73,7 +73,7 @@ function createGrid(boardSize) {
     if (pawPatrolThemeButton.classList.contains("theme-active")) {
       cardImage.src = `./pawpatrol-imgs/${randNum}.png`;
       cardFront.style.backgroundImage =
-        "url('../card-backs/pawpatrollogo.png'), radial-gradient(circle, rgba(221,221,221,1) 0%, rgba(59,59,59,1) 100%)";
+        "url('../card-backs/pawpatrollogo.png'), radial-gradient(circle, rgba(255,214,185,1) 0%, rgba(220,86,0,1) 77%)";
       cardFront.style.backgroundSize = "140%";
       document.body.style.backgroundImage = "url('../bg-imgs/pawpatrolbg.png')";
     }
@@ -81,7 +81,7 @@ function createGrid(boardSize) {
     if (minecraftThemeButton.classList.contains("theme-active")) {
       cardImage.src = `./minecraft-imgs/${randNum}.png`;
       cardFront.style.backgroundImage =
-        "url('../card-backs/minecraft.png'), radial-gradient(circle, rgba(221,221,221,1) 0%, rgba(59,59,59,1) 100%)";
+        "url('../card-backs/minecraft.png'), radial-gradient(circle, rgba(190,255,185,1) 0%, rgba(4,152,0,1) 77%)";
       cardFront.style.backgroundSize = "90%, cover";
       document.body.style.backgroundImage = "url('../bg-imgs/minecraftbg.png')";
     }
@@ -89,7 +89,7 @@ function createGrid(boardSize) {
     if (spongebobThemeButton.classList.contains("theme-active")) {
       cardImage.src = `./spongebob-imgs/${randNum}.png`;
       cardFront.style.backgroundImage =
-        "url('../card-backs/spongebob.png'), radial-gradient(circle, rgba(221,221,221,1) 0%, rgba(59,59,59,1) 100%)";
+        "url('../card-backs/spongebob.png'), radial-gradient(circle, rgba(255,251,141,1) 0%, rgba(186,170,0,1) 77%)";
       cardFront.style.backgroundSize = "90%, cover";
       document.body.style.backgroundImage = "url('../bg-imgs/spongebobbg.png')";
     }
