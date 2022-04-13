@@ -498,7 +498,22 @@ body {
   background-position: center;
   filter: grayscale(25%);
 
-  box-shadow: inset 0 0 0px 6px #ffffff;
+  box-shadow: inset 0 0 0px 6px #fff;
+}
+
+@keyframes hover-glow {
+  0% {
+    transform: translateY(-5px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.card-front:hover {
+  box-shadow: inset 0 0 0 6px #fff, 0 0 8px 2px #fff;
+  animation: hover-glow 0.4s infinite alternate-reverse ease-in-out;
 }
 
 .card-back {
@@ -742,7 +757,7 @@ body {
   }
 }
 
-@media (max-width: 385px) {
+@media (max-width: 420px) {
   #subtitle,
   #attempts {
     font-size: 1rem;
@@ -761,6 +776,11 @@ body {
     padding: 0rem 0rem;
     font-size: 1rem;
     text-align: center;
+  }
+
+  .card-front:hover {
+    animation: none;
+    box-shadow: inset 0 0 0px 6px #fff;
   }
 
   .in-game.btn-to-menu {
