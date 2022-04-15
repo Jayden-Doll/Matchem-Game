@@ -1,5 +1,6 @@
 :root {
   --primary-color: #011638;
+  --primary-color-opaque: #01163892;
   --secondary-color: #f85151;
 }
 
@@ -19,11 +20,56 @@ body {
   align-items: center;
   font-family: "Raleway", "sans-serif";
   position: relative;
-  transition: 0.3s ease-in-out;
   min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+.sound {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--secondary-color);
+  background-color: var(--primary-color-opaque);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-bottom-right-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  position: absolute;
+  z-index: 4;
+  left: 0rem;
+  top: 0rem;
+}
+
+.sound i {
+  transition: 0.1s ease-in-out;
+}
+
+.sound:hover {
+  cursor: pointer;
+}
+
+.sound:hover i {
+  color: white;
+}
+
+#no-vol {
+  display: none;
+}
+
+.sound.muted #no-vol {
+  display: block;
+}
+
+#vol {
+  display: block;
+}
+
+.sound.muted #vol {
+  display: none;
 }
 
 .overlay {
@@ -36,29 +82,6 @@ body {
 
 .overlay-hidden {
   visibility: hidden;
-}
-
-@-webkit-keyframes AnimationName {
-  0% {
-    background-position: 0% 84%;
-  }
-  50% {
-    background-position: 100% 17%;
-  }
-  100% {
-    background-position: 0% 84%;
-  }
-}
-@keyframes AnimationName {
-  0% {
-    background-position: 0% 84%;
-  }
-  50% {
-    background-position: 100% 17%;
-  }
-  100% {
-    background-position: 0% 84%;
-  }
 }
 
 .menu-container {
@@ -457,14 +480,14 @@ body {
 }
 
 .grid-36 .grid-card {
-  width: 6rem;
-  height: 9rem;
+  width: 5rem;
+  height: 8rem;
 }
 
 .grid-card {
   box-sizing: border-box;
-  width: 8rem;
-  height: 11rem;
+  width: 6rem;
+  height: 9rem;
   background-color: transparent;
   display: flex;
   justify-content: center;
@@ -758,6 +781,14 @@ body {
 }
 
 @media (max-width: 420px) {
+  .sound {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    top: 0rem;
+    left: 0rem;
+  }
+
   #subtitle,
   #attempts {
     font-size: 1rem;
@@ -787,5 +818,9 @@ body {
     border: 0.3rem solid transparent;
     border-radius: 5px;
     padding: 0.05rem 1rem;
+  }
+
+  .grid {
+    gap: 0.75rem;
   }
 }

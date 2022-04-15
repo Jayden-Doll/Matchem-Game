@@ -17,6 +17,31 @@ const themeOptions = document.querySelectorAll(".btn-theme");
 const pawPatrolThemeButton = document.querySelector("#pawpatroltheme");
 const minecraftThemeButton = document.querySelector("#minecrafttheme");
 const spongebobThemeButton = document.querySelector("#spongebobtheme");
+const flipSound = new Audio("./sounds/card-flip.mp3");
+const flipSuccessSound = new Audio("./sounds/card-match.mp3");
+const flipFailSound = new Audio("./sounds/card-fail.mp3");
+const soundButton = document.querySelector(".sound");
+const sounds = [flipSound, flipFailSound, flipSuccessSound];
+
+sounds.forEach((sound) => {
+  sound.muted = true;
+});
+
+soundButton.addEventListener("click", () => {
+  if (soundButton.classList.contains("muted")) {
+    sounds.forEach((sound) => {
+      sound.muted = false;
+    });
+    soundButton.classList.remove("muted");
+  } else {
+    if (!soundButton.classList.contains("muted")) {
+      sounds.forEach((sound) => {
+        sound.muted = true;
+      });
+      soundButton.classList.add("muted");
+    }
+  }
+});
 
 let smBoard = 12;
 let mdBoard = 24;
@@ -157,6 +182,7 @@ function newGame(boardSize) {
   hidePopup();
   const cards = document.querySelectorAll(".card-inner");
   setTimeout(() => {
+    flipSound.play();
     cards.forEach((card) => {
       card.classList.remove("rotate", "active", "matched", "disabled");
       card.classList.add("noclick");
@@ -198,6 +224,7 @@ function runGameLogic(grid, boardSize) {
         //If both card's ids match
         if (cardID[0] === cardID[1]) {
           matches++;
+          flipSuccessSound.play();
 
           if (matches === boardSize / 2) {
             message.innerText = "You Win!";
@@ -215,6 +242,7 @@ function runGameLogic(grid, boardSize) {
           }
         } else {
           attempts--;
+          flipFailSound.play();
           attemptCount.innerText = `${attempts}`;
 
           if (attempts === 0) {
