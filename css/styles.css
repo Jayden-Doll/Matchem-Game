@@ -782,11 +782,7 @@ body {
 
 @media (max-width: 420px) {
   .sound {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 0;
-    top: 0rem;
-    left: 0rem;
+    display: none;
   }
 
   #subtitle,
