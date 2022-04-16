@@ -440,7 +440,6 @@ boardOptionSmall.addEventListener("click", () => {
   createGrid(smBoard);
   const activeGrid = document.querySelectorAll(".card-inner");
   runGameLogic(activeGrid, smBoard);
-  console.log(matches);
 
   startButton.addEventListener("click", () => {
     const grid = document.querySelector(".grid");
