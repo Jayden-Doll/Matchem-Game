@@ -430,11 +430,9 @@ body {
 }
 
 small {
-  position: absolute;
-  bottom: 1rem;
   font-weight: bold;
   background-color: var(--primary-color);
-  margin-top: 4rem;
+  margin-top: 2rem;
   color: var(--secondary-color);
   text-transform: uppercase;
 }
