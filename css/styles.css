@@ -416,7 +416,7 @@ body {
 .container {
   height: auto;
   width: auto;
-  margin-bottom: 0.5%;
+  margin-bottom: 0.75rem;
 }
 
 .title-menu {
@@ -430,8 +430,11 @@ body {
 }
 
 small {
+  position: absolute;
+  bottom: 1rem;
   font-weight: bold;
-  margin-bottom: 2rem;
+  background-color: var(--primary-color);
+  margin-top: 4rem;
   color: var(--secondary-color);
   text-transform: uppercase;
 }
@@ -806,6 +809,19 @@ small a:hover {
     display: none;
   }
 
+  small {
+    bottom: 0.3rem;
+    font-size: 0.75rem;
+  }
+
+  .container {
+    margin-bottom: 0.5rem;
+  }
+
+  .in-game.btn-container {
+    padding: 0rem 1.2rem;
+  }
+
   #subtitle,
   #attempts {
     font-size: 1rem;
@@ -826,15 +842,40 @@ small a:hover {
     text-align: center;
   }
 
+  .theme-container {
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-to-menu.in-game {
+    animation: none;
+    border: none;
+  }
+
   .card-front:hover {
     animation: none;
     box-shadow: inset 0 0 0px 6px #fff;
   }
 
-  .in-game.btn-to-menu {
-    border: 0.3rem solid transparent;
-    border-radius: 5px;
-    padding: 0.05rem 1rem;
+  .btn-to-menu.in-game {
+    padding: 0.25rem 0.5rem;
+  }
+
+  .btn-to-menu.in-game:hover {
+    animation: none;
+    background-color: var(--secondary-color);
+  }
+
+  .options-container {
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-start:hover {
+    animation: none;
+    background-color: var(--secondary-color);
+  }
+
+  .btn-start:hover:disabled {
+    background-color: rgb(124, 124, 124);
   }
 
   .grid {
