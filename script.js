@@ -213,6 +213,7 @@ function runGameLogic(grid, boardSize) {
         //If both card's ids match
         if (cardID[0] === cardID[1]) {
           matches++;
+          flipSuccessSound.currentTime = 0;
           flipSuccessSound.play();
 
           //If all cards are matched
@@ -232,6 +233,7 @@ function runGameLogic(grid, boardSize) {
           }
         } else {
           attempts--;
+          flipFailSound.currentTime = 0;
           flipFailSound.play();
           attemptCount.innerText = `${attempts}`;
 
