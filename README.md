@@ -2,7 +2,7 @@
 
 Welcome to Match 'Em, a memory game for kids!
 
-With themes from popular franchises like _'Paw Patrol'_, _'Minecraft'_, and _'Spongebob'_, and 3 board sizes to choose from, you'll want to play them all!
+With themes from popular franchises like _'Paw Patrol'_, _'Minecraft'_, and _'Spongebob'_, and 3 board sizes to choose from, you won't want to stop playing!
 
 <a href="https://matchemupgame.com" target="_blank">🃏 Check it out here!</a>
 
@@ -58,11 +58,11 @@ _Spongebob Theme (Large Board)_
 
 HTML
 
-![CSS Icon](./readme-imgs/javascriptlogo.svg)
+![CSS Icon](./readme-imgs/csslogo.svg)
 
 CSS
 
-![Javascript Icon](./readme-imgs/csslogo.svg)
+![Javascript Icon](./readme-imgs/javascriptlogo.svg)
 
 Javascript
 
